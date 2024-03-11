@@ -1,6 +1,7 @@
 # BUET_FRIENDS
 
 🎓 **University:** Bangladesh University Of Engineering And Technology
+## We have been selected for the phase 2 . postion 57 ,out of 400+ teams 
 
 📧 **Emails:**
 - [jonayedmohiuddin@gmail.com](mailto:jonayedmohiuddin@gmail.com)
