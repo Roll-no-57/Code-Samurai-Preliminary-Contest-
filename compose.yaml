@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  app:
+    image: app
+    build:
+      context: .
+    ports:
+      - "${APP_PORT}:8000"
+    env_file:
+      - .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "${DB_PORT}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - ./src/backend/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_NAME}"
+
+volumes:
+  postgresdata:
+    driver: local
